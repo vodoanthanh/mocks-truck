@@ -1,0 +1,1 @@
+export const DEFAULT_SESSION_ID = "0000-0000-0000-0000";
