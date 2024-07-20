@@ -1,5 +1,8 @@
-import { HttpMethod } from "@/constants";
+import { HttpMethod, HttpStatusCode, MESSAGES } from "@/constants";
+import { AppException } from "@/exceptions";
+import { FormatterHelper } from "@/helpers";
 import { Configuration, MockAPIResponse, Session } from "@/types";
+import { ConfigurationService } from "./configuration.service";
 
 export const SessionService = new (class {
   private sessionsById: Map<string, Session> = new Map();
@@ -7,26 +10,36 @@ export const SessionService = new (class {
   upsertConfigurationToSession(
     id: string,
     configuration: Configuration
-  ): boolean {
-    this.sessionsById.set(id, { configuration, usage: {} });
-    return true;
+  ): Session {
+    const session = { configuration, usage: {} };
+    this.sessionsById.set(id, session);
+    return session;
   }
 
-  findById(id: string): Session {
+  findByIdOrThrowError(id: string): Session {
     const session = this.sessionsById.has(id) && this.sessionsById.get(id);
     if (session) {
       return session;
     }
-    throw new Error("Session is not found.");
+
+    throw new AppException({
+      message: MESSAGES.NOT_FOUND.SESSION,
+      status: HttpStatusCode.NotFound,
+    });
   }
 
   deleteById(id: string): boolean {
-    this.findById(id);
+    this.findByIdOrThrowError(id);
     return this.sessionsById.delete(id);
   }
 
-  resetUsageById(id: string): boolean {
-    const session = this.findById(id);
+  async refreshById(id: string): Promise<boolean> {
+    const session = this.findByIdOrThrowError(id);
+    if (session.configuration.id) {
+      session.configuration = await ConfigurationService.findByIdOrThrowError(
+        session.configuration.id
+      );
+    }
     session.usage = {};
     this.sessionsById.set(id, session);
     return true;
@@ -37,15 +50,18 @@ export const SessionService = new (class {
     endpoint: string,
     method: HttpMethod
   ): MockAPIResponse {
-    const session = this.findById(id);
-
-    console.log(id, endpoint, method);
-
-    const mocks = session.configuration.mocks.filter(
+    const session = this.findByIdOrThrowError(id);
+    const mocks = FormatterHelper.formatStringToObject(
+      session.configuration.mocks
+    ).filter(
       (mock) =>
         new RegExp(mock.endpointRegex).test(endpoint) && mock.method === method
     );
-    if (!mocks.length) throw new Error("API mock is not found.");
+    if (!mocks.length)
+      throw new AppException({
+        message: MESSAGES.NOT_FOUND.API_MOCK,
+        status: HttpStatusCode.NotFound,
+      });
 
     const usageKey = `${mocks[0].endpointRegex}_${mocks[0].method}`;
     const currentCount = session.usage[usageKey] || 0;

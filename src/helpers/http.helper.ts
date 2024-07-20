@@ -1,5 +1,7 @@
-import { AppError, HttpErrorResponse, HttpSuccessResponse } from "@/types";
 import _ from "lodash";
+
+import { AppException } from "@/exceptions";
+import { HttpErrorResponse, HttpSuccessResponse } from "@/types";
 
 export const HttpHelper = new (class {
   buildSuccessResponse<T, K extends any>(
@@ -12,14 +14,14 @@ export const HttpHelper = new (class {
     };
   }
 
-  buildErrorResponse(error: AppError | Error): HttpErrorResponse {
+  buildErrorResponse(error: AppException | Error): HttpErrorResponse {
     return {
       error: _.pick(error, [
         "name",
         "message",
         "status",
         "details",
-      ]) as AppError,
+      ]) as AppException,
     };
   }
 })();

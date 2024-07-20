@@ -1,4 +1,5 @@
 import { HttpMethod, HttpStatusCode } from "@/constants";
+import { Tag } from "./tag.type";
 
 export interface MockAPIResponse {
   httpStatus: HttpStatusCode;
@@ -13,9 +14,28 @@ export interface MockAPIConfig {
 }
 
 export interface Configuration {
-  id?: string;
+  id?: number;
   name?: string;
   description?: string;
-  tags?: string[];
-  mocks: MockAPIConfig[];
+  mocks: MockAPIConfig[] | string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface ConfigurationTag {
+  id: number;
+  configurationId: number;
+  tagId: number;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface ConfigurationQuery {
+  query?: string;
+  tagIds?: number[];
+  ids?: number[];
+}
+
+export interface ConfigurationWithTags extends Configuration {
+  tags: Tag[];
 }

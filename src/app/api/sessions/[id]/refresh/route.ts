@@ -10,7 +10,7 @@ export const PUT = async (
 ) => {
   try {
     return NextResponse.json(
-      HttpHelper.buildSuccessResponse(SessionService.resetUsageById(id))
+      HttpHelper.buildSuccessResponse(await SessionService.refreshById(id))
     );
   } catch (err: any) {
     return NextResponse.json(HttpHelper.buildErrorResponse(err), {

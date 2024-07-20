@@ -5,10 +5,13 @@ import { HttpHelper } from "@/helpers";
 import { SessionService } from "@/services";
 import { Configuration } from "@/types";
 
-export const GET = (_: any, { params: { id } }: { params: { id: string } }) => {
+export const GET = async (
+  _: any,
+  { params: { id } }: { params: { id: string } }
+) => {
   try {
     return NextResponse.json(
-      HttpHelper.buildSuccessResponse(SessionService.findById(id))
+      HttpHelper.buildSuccessResponse(SessionService.findByIdOrThrowError(id))
     );
   } catch (err: any) {
     return NextResponse.json(HttpHelper.buildErrorResponse(err), {

@@ -17,3 +17,5 @@ export enum HttpMethod {
 }
 
 export const HTTP_SESSION_ID_HEADER = "x-session-id";
+
+export const SPLIT_ITEM_SYMBOL = ";";
