@@ -1,29 +1,17 @@
 import type { Knex } from "knex";
 
-const config: { [key: string]: Knex.Config } = {
-  development: {
-    client: "better-sqlite3",
-    connection: {
-      filename: "database/db.sqlite3",
-    },
-    debug: true,
-    migrations: {
-      tableName: "migrations",
-      directory: "database/migrations",
-    },
+// Update with your config settings.
+require("dotenv").config();
+
+const config: Knex.Config = {
+  client: "better-sqlite3",
+  connection: {
+    filename: String(process.env.DATABASE_FILE_PATH),
   },
-  production: {
-    client: "better-sqlite3",
-    connection: {
-      filename: "database/db.sqlite3",
-      options: {
-        readonly: true,
-      },
-    },
-    migrations: {
-      tableName: "migrations",
-      directory: "database/migrations",
-    },
+  debug: true,
+  migrations: {
+    tableName: "migrations",
+    directory: "database/migrations",
   },
 };
 
