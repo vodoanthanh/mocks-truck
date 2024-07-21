@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "0d3a6efb-e3a1-45da-9f61-1f055d4f05a8",
+		"name": "Mocks Truck",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6706691",
+		"_collection_link": "https://bold-robot-314809.postman.co/workspace/Big-Thinkers~470339b0-6416-4472-8d8a-d35fd3628c59/collection/6706691-0d3a6efb-e3a1-45da-9f61-1f055d4f05a8?action=share&source=collection_link&creator=6706691"
+	},
+	"item": [
+		{
+			"name": "Get all configurations by query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/configurations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"configurations"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "Riven",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a configuration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"name\": \"US123456\",\n    \"description\": \"This is for ticket US123456\",\n    \"mocks\": [\n        {\n            \"endpointRegex\": \"^\\/v1\\/customers$\",\n            \"method\": \"POST\",\n            \"response\": {\n                \"httpStatus\": 201,\n                \"dataResponse\": {\n                    \"data\": {\n                        \"id\": 1,\n                        \"firstName\": \"Josh\",\n                        \"lastName\": \"Bean\",\n                        \"email\": \"joshbean19@gmail.com\"\n                    }\n                }\n            }\n        },\n        {\n            \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)$\",\n            \"method\": \"GET\",\n            \"response\": {\n                \"httpStatus\": 200,\n                \"dataResponse\": {\n                    \"data\": {\n                        \"id\": 1,\n                        \"firstName\": \"Josh\",\n                        \"lastName\": \"Bean\",\n                        \"email\": \"joshbean19@gmail.com\"\n                    }\n                }\n            }\n        },\n        {\n            \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)$\",\n            \"method\": \"GET\",\n            \"response\": {\n                \"httpStatus\": 200,\n                \"dataResponse\": {\n                    \"data\": {\n                        \"id\": 2,\n                        \"firstName\": \"Ben\",\n                        \"lastName\": \"Rush\",\n                        \"email\": \"benrush21@gmail.com\"\n                    }\n                }\n            }\n        },\n        {\n            \"endpointRegex\": \"/v1/customers/999\",\n            \"method\": \"GET\",\n            \"response\": {\n                \"httpStatus\": 200,\n                \"dataResponse\": {\n                    \"data\": {\n                        \"id\": 999,\n                        \"firstName\": \"Legend\",\n                        \"lastName\": \"Ben\",\n                        \"email\": \"legendben6@gmail.com\"\n                    }\n                }\n            }\n        },\n        {\n            \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)\\/payments$\",\n            \"method\": \"GET\",\n            \"response\": {\n                \"httpStatus\": 200,\n                \"dataResponse\": {\n                    \"data\": [\n                        {\n                            \"id\": 1,\n                            \"total\": 249,\n                            \"status\": \"PAID\"\n                        },\n                        {\n                            \"id\": 2,\n                            \"total\": 200,\n                            \"status\": \"UNPAID\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"total\": 34.35,\n                            \"status\": \"PENDING\"\n                        }\n                    ]\n                }\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/configurations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"configurations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a configuration",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \n    \"name\": \"US123456\",\n    \"description\": \"This is for ticket US123456\",\n    \"mocks\": [\n        {\n            \"endpointRegex\": \"^\\/v1\\/customers$\",\n            \"method\": \"POST\",\n            \"response\": {\n                \"httpStatus\": 201,\n                \"dataResponse\": {\n                    \"data\": {\n                        \"id\": 1,\n                        \"firstName\": \"Josh\",\n                        \"lastName\": \"Bean\",\n                        \"email\": \"joshbean19@gmail.com\"\n                    }\n                }\n            }\n        },\n        {\n            \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)$\",\n            \"method\": \"GET\",\n            \"response\": {\n                \"httpStatus\": 200,\n                \"dataResponse\": {\n                    \"data\": {\n                        \"id\": 1,\n                        \"firstName\": \"Josh\",\n                        \"lastName\": \"Bean\",\n                        \"email\": \"joshbean19@gmail.com\"\n                    }\n                }\n            }\n        },\n        {\n            \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)$\",\n            \"method\": \"GET\",\n            \"response\": {\n                \"httpStatus\": 200,\n                \"dataResponse\": {\n                    \"data\": {\n                        \"id\": 2,\n                        \"firstName\": \"Ben\",\n                        \"lastName\": \"Rush\",\n                        \"email\": \"benrush21@gmail.com\"\n                    }\n                }\n            }\n        },\n        {\n            \"endpointRegex\": \"/v1/customers/999\",\n            \"method\": \"GET\",\n            \"response\": {\n                \"httpStatus\": 200,\n                \"dataResponse\": {\n                    \"data\": {\n                        \"id\": 999,\n                        \"firstName\": \"Legend\",\n                        \"lastName\": \"Ben\",\n                        \"email\": \"legendben6@gmail.com\"\n                    }\n                }\n            }\n        },\n        {\n            \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)\\/payments$\",\n            \"method\": \"GET\",\n            \"response\": {\n                \"httpStatus\": 200,\n                \"dataResponse\": {\n                    \"data\": [\n                        {\n                            \"id\": 1,\n                            \"total\": 249,\n                            \"status\": \"PAID\"\n                        },\n                        {\n                            \"id\": 2,\n                            \"total\": 200,\n                            \"status\": \"UNPAID\"\n                        },\n                        {\n                            \"id\": 4,\n                            \"total\": 34.35,\n                            \"status\": \"PENDING\"\n                        }\n                    ]\n                }\n            }\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/configurations/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"configurations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a configuration",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/configurations/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"configurations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a configuration by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/configurations/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"configurations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tags by query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/tags?query=Riven",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tags"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "Riven"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a tag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Rivendell\",\n    \"description\": \"This tag is for Rivendell team only.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/tags",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a session by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/sessions/0000-0000-0000-0000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sessions",
+						"0000-0000-0000-0000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upsert a session by id and data request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"configuration\": {\n        \"mocks\": [\n            {\n                \"endpointRegex\": \"^\\/v1\\/customers$\",\n                \"method\": \"POST\",\n                \"response\": {\n                    \"httpStatus\": 201,\n                    \"dataResponse\": {\n                        \"data\": {\n                            \"id\": 1,\n                            \"firstName\": \"Josh\",\n                            \"lastName\": \"Bean\",\n                            \"email\": \"joshbean19@gmail.com\"\n                        }\n                    }\n                }\n            },\n            {\n                \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)$\",\n                \"method\": \"GET\",\n                \"response\": {\n                    \"httpStatus\": 200,\n                    \"dataResponse\": {\n                        \"data\": {\n                            \"id\": 1,\n                            \"firstName\": \"Josh\",\n                            \"lastName\": \"Bean\",\n                            \"email\": \"joshbean19@gmail.com\"\n                        }\n                    }\n                }\n            },\n            {\n                \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)$\",\n                \"method\": \"GET\",\n                \"response\": {\n                    \"httpStatus\": 200,\n                    \"dataResponse\": {\n                        \"data\": {\n                            \"id\": 2,\n                            \"firstName\": \"Ben\",\n                            \"lastName\": \"Rush\",\n                            \"email\": \"benrush21@gmail.com\"\n                        }\n                    }\n                }\n            },\n            {\n                \"endpointRegex\": \"/v1/customers/999\",\n                \"method\": \"GET\",\n                \"response\": {\n                    \"httpStatus\": 200,\n                    \"dataResponse\": {\n                        \"data\": {\n                            \"id\": 999,\n                            \"firstName\": \"Legend\",\n                            \"lastName\": \"Ben\",\n                            \"email\": \"legendben6@gmail.com\"\n                        }\n                    }\n                }\n            },\n            {\n                \"endpointRegex\": \"^\\/v1\\/customers\\/([^\\/]+)\\/payments$\",\n                \"method\": \"GET\",\n                \"response\": {\n                    \"httpStatus\": 200,\n                    \"dataResponse\": {\n                        \"data\": [\n                            {\n                                \"id\": 1,\n                                \"total\": 249,\n                                \"status\": \"PAID\"\n                            },\n                            {\n                                \"id\": 2,\n                                \"total\": 200,\n                                \"status\": \"UNPAID\"\n                            },\n                            {\n                                \"id\": 4,\n                                \"total\": 34.35,\n                                \"status\": \"PENDING\"\n                            }\n                        ]\n                    }\n                }\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/sessions/0000-0000-0000-0000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sessions",
+						"0000-0000-0000-0000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upsert a session by id and configuration id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/sessions/0000-0000-0000-0000/configurations/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sessions",
+						"0000-0000-0000-0000",
+						"configurations",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh a session by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/sessions/0000-0000-0000-0000/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sessions",
+						"0000-0000-0000-0000",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a session by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/sessions/0000-0000-0000-0000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sessions",
+						"0000-0000-0000-0000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
