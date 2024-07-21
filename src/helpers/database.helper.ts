@@ -1,6 +1,8 @@
 import type { Knex } from "knex";
 import knex from "knex";
 
+console.log(1);
+
 export const getDatabaseConfig = (): Knex.Config => ({
   client: "better-sqlite3",
   debug: true,
